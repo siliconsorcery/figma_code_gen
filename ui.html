@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="https://static.figma.com/api/figma-extension-api-0.0.1.css">
+
+<h2>Rectangle Creator</h2>
+<p>Count: <input id="count" value="5"></p>
+<button id="outline">Outline</button>
+<button id="stats">Stats</button>
+<button id="create">Create</button>
+<button id="cancel">Cancel</button>
+
+<script>
+	document.getElementById('outline').onclick = () => {
+		parent.postMessage({ pluginMessage: { type: 'outline' } }, '*')
+	}
+
+	document.getElementById('stats').onclick = () => {
+		parent.postMessage({ pluginMessage: { type: 'stats' } }, '*')
+	}
+
+	document.getElementById('create').onclick = () => {
+		const textbox = document.getElementById('count');
+		const count = parseInt(textbox.value, 10);
+		parent.postMessage({ pluginMessage: { type: 'create-rectangles', count } }, '*')
+	}
+
+	document.getElementById('cancel').onclick = () => {
+		parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
+	}
+</script>
